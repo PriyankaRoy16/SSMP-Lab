@@ -1,0 +1,42 @@
+#include<stdio.h>
+struct File
+{int start, length, flag;
+char name[20];
+}f[20];
+int nof,b,s=0;
+void Insert( int i)
+{
+printf("\n\nName of file:");
+scanf("%s",f[i].name);
+f[i].start=++s;
+printf("Number of blocks for file:");
+scanf("%d",&f[i].length);
+s=s+f[i].length-1;
+if(s<b)
+{printf("Status of allocation: Allocation successful");f[i].flag=1;}
+else
+{printf("Status of allocation: Allocation unsuccessful");
+f[i].flag=0;}
+}
+void main()
+{int i,k;
+printf("Priyanka Roy\nRoll no.: 28");
+printf("\nEnter the number of files:");
+scanf("%d",&nof);
+printf("\nEnter the total number of blocks:");
+scanf("%d",&b);
+for( i=1;i<=nof;i++)
+Insert(i);
+printf("\n\t\t\tFILE ALLOCATION TABLE");
+printf("\nName of file No. of blocks Blocks allocated");
+for(i=1;i<=nof;i++)
+{if(f[i].flag==1)
+{
+printf("\n %s              %d         ",f[i].name,f[i].length);
+for(k=f[i].start;k<(f[i].length+f[i].start);k++)
+printf("%d ",k);
+}
+else
+{printf("\n %s             %d         Cannot be allocated\n",f[i].name,f[i].length);}
+}
+}
